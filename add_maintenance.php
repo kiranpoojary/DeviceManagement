@@ -246,7 +246,6 @@ if($_SESSION ["expiry"]==1)
     </div>
 </div>
 </div>
-
 <div class="py-3 bg-dark text-white">
       <div class="container">
         <div class="row">
