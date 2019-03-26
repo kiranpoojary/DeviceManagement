@@ -111,12 +111,10 @@ if (!$con or !mysqli_select_db($con,'DeviceManagement'))
 	}
 else
 	{
-
 		if (isset($_POST["uid"]) && !empty($_POST["uid"])) 
 			{
 				$uid=$_POST["uid"];
 				$password=$_POST["psw"];
-
 				//query to check user exist	
 				$result = $con->query("SELECT COUNT(*) FROM users  WHERE userid='$uid'  AND password='$password'"); 
 				$row = $result->fetch_assoc();

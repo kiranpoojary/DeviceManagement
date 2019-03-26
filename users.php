@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 session_start();
 if($_SESSION ["expiry"]==1)
 {
@@ -7,25 +7,19 @@ if($_SESSION ["expiry"]==1)
 
 }else
 {
-    $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "DeviceManagement";
-
 // Create connection
-$con = new mysqli($servername, $username, $password, $dbname);
+$con=mysqli_connect("localhost","root","","DeviceManagement");
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Users</title>
-    <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />  
-    <!-- JavaScript files-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+   <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="http://localhost/DeviceManagement/bootstrap/js/sweetalert.min.js" rel="stylesheet" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
 <style type="text/css">
 .changer
@@ -40,19 +34,33 @@ $con = new mysqli($servername, $username, $password, $dbname);
     
 <script type="text/javascript">      
 function error_report($tt,$txt,$ty)
-{
-    swal({
-        title: $tt,
-        text: $txt,
-        type: $ty,    
+    {
+        swal({
+            title: $tt,
+            text: $txt,
+            type: $ty
         },
-        function (isConfirm)
-        {
-            if (isConfirm)
-            {
+        function (isConfirm) {
+            if (isConfirm) {
                 window.location.href = "users.php";
                 
-            }
+                }
+        });
+}
+
+
+function error_report2($tt,$txt,$ty)
+    {
+        swal({
+            title: $tt,
+            text: $txt,
+            type: $ty
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                window.location.href = "userupdate.php";
+                
+                }
         });
 }
 
@@ -94,41 +102,38 @@ if ($con->connect_error) {
 $sql = "SELECT * FROM users";
 $result = $con->query($sql);
 
-if ($result->num_rows > 0) {
-    // output data of each row
-
-echo "<div class='container'>";
-  echo "<h2>User Of Device Management</h2>";          
-  echo "<table class='table table-hover'>";
+if ($result->num_rows > 0)
+{
+    echo "<div class='container'>";
+    echo "<h2>User Of Device Management</h2>";          
+    echo "<table class='table table-hover'>";
     echo "<thead>";
-      echo "<tr>";
-        echo "<th>Login ID</th>";
-        echo "<th>Password</th>";
-        echo "<th>Email</th>";
-        echo "<th>Access Type</th>";
-      echo "</tr>";
+    echo "<tr>";
+    echo "<th>Login ID</th>";
+    echo "<th>Password</th>";
+    echo "<th>Email</th>";
+    echo "<th>Access Type</th>";
+    echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
-    while($row = $result->fetch_assoc()) {
+    while($row = $result->fetch_assoc())
+    {
         echo "<tr>";
         echo "<td>".$row["userid"]."</td>";
         echo "<td>".$row["password"]."</td>";
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["privilage"]."</td>";
-       
-        
-      echo "</tr>";
+        echo "</tr>";
       
     }
     echo "</tbody>";
-  echo "</table>";
-echo "</div>";
+    echo "</table>";
+    echo "</div>";
 }
 else
 {
     echo "0 results";
 }
-
 
 
 ?> 
@@ -181,78 +186,46 @@ else
 
 
 <?php
+$con=mysqli_connect("localhost","root","","DeviceManagement");
+mysqli_select_db($con,'DeviceManagement');
+
 if (isset($_POST["update"]))
-{
-    print($_POST["uid"]);
-    echo '<script type="text/javascript">',
-     'error_report("Something Went Wrong","Error while Connecting to Database server", "error");',
-     '</script>'; 
+{ 
      
-}
-
-/*
-error_reporting(0);
-//session_start();
-// Create connection
-$con = new mysqli($servername, $username, $password, $dbname);
-if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
-    {
-    //alert_user("Error while connecting to database");
-    echo '<script type="text/javascript">',
-     'error_report("Something Went Wrong","Error while Connecting to Database server", "error");',
-     '</script>'; 
-    }
     
-else
+    if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
     {
-
-        if (isset($_POST["updateclick"]) && !empty($_POST["uid"])) 
-        {
-
-            $uid=$_POST["uid"];
-
-            //query to check user exist 
-            $result = $con->query("SELECT COUNT(*) FROM users  WHERE userid='$uid' "); 
-                $row = $result->fetch_assoc();
-                $size = $row['COUNT(*)'];
-                if ($size!=0) 
-                {                     
-                    $sql = "SELECT * FROM users  WHERE userid='$uid' "; 
-                    $result = $con->query($sql);
-                    if ($result->num_rows > 0)
-                    {
-                        // output data of each row
-                        while($row = $result->fetch_assoc())
-                        {    
-                            $var_pfrom=$row["userid"];
-                            $var_pudate=$row["password"];
-                            $var_comp=$row["email"];
-                            $var_waranty=$row["privilage"];
-                             
-                           
-                        }
-                    }
-                }
-                //display invalid login credential alert
-                else        
-                {   
-                    echo '<script type="text/javascript">';
-                    echo 'error_report("Invalid Credential!","Please Enter Valid password and UserID", "error");';
-                    echo '</script>'; 
-                }
-                $con->close();
-            
-            }
-            else
-            {
-                 echo '<script type="text/javascript">';
-                    echo 'error_report("Invalidfgh Credential!","Please Enter Valid password and UserID", "error");';
-                    echo '</script>'; 
-
-            }
-
+        rint("no    ");      
     }
-    */
+        
+    else
+    {
+          
+        $uid=$_POST["uid"]; 
+        $result = $con->query("SELECT COUNT(*) FROM users  WHERE userid='$uid'");        
+        $row = $result->fetch_assoc();
+        $size = $row['COUNT(*)'];
+        if ($size!=0) 
+        {
+            $_SESSION["uid"]=$uid;          
+            echo '<script type="text/javascript">';
+            echo 'window.location.href = "userupdate.php";';
+            echo '</script>'; 
+           
+                       
+        }
+        else 
+        {
+            echo '<script type="text/javascript">';
+            echo 'error_report("Invalid UserID","Please Enter Valid UserID", "error");';
+            echo '</script>'; 
+             
+        }       
+                
+    }
+              
+
+}
     
 ?>
 
