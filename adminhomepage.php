@@ -68,9 +68,6 @@ $con->close();
       type: $ty
     });
   }
- 
-
-
 
 function setLogout()
 {
@@ -80,9 +77,31 @@ function setLogout()
 
 </script>
 
+<style type="text/css">
+  .bttn
+  {
+    background-color: #0000ff;
+    border-radius: 20px;
+    color: white;
+    height: 50px;
+    width: 200px;
+
+  }
+
+  .bttn:hover
+  {
+    background-color: #00ff0f;
+    color: black;
+    height: 60px;
+    width: 220px;
+    font-weight: 900;
+
+  }
+</style>
+
 </head>
   <body>
-    <form method="post">
+    <form method="post" action="hello_world.php">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#" style="margin-left: -60px;">DeviceManagement</a>
@@ -102,6 +121,7 @@ function setLogout()
             </div>
         </div>
     </nav>
+
     <!-- Hero Section-->
     <section class="bg-light">
       <div class="container"> 
@@ -124,6 +144,88 @@ function setLogout()
       </div>
     </section>
     <br><br>
+    <br><br>
+  
+
+
+    <?php
+
+// Check connection
+$con=mysqli_connect("localhost","root","","DeviceManagement");
+if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
+{
+}
+else
+{
+
+$sql = "SELECT * FROM users";
+$result = $con->query($sql);
+
+if ($result->num_rows > 0)
+{
+    echo "<div class='container'>";
+    echo "<h2>User Of Device Management</h2>";          
+    echo "<table class='table table-hover'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Login ID</th>";
+    echo "<th>Password</th>";
+    echo "<th>Email</th>";
+    echo "<th>Access Type</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    while($row = $result->fetch_assoc())
+    {
+        echo "<tr>";
+        echo "<td>".$row["userid"]."</td>";
+        echo "<td>".$row["password"]."</td>";
+        echo "<td>".$row["email"]."</td>";
+        echo "<td>".$row["privilage"]."</td>";
+        echo "</tr>";
+      
+    }
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+}
+else
+{
+    echo "0 results";
+}
+}
+
+
+?>
+<br><br><br><br>
+<div class="row">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<div>
+  <input style="width: 200px" type="text" name="dev" class="form-control">
+  <br>
+  <input type="submit" name="dev" value="Get Device Report" class="bttn">
+</div>   
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<center>
+<div>
+  <input style="width: 200px" type="text" name="dev" class="form-control">
+  <br>
+  <input type="submit" name="mntn" value="Get Maintenance Report" class="bttn">
+</div>
+</center>
+</div>
+
+<br><br><br><br>
+
+
     
     <!-- Footer-->
     <div class="py-5 bg-light">
@@ -173,3 +275,5 @@ function setLogout()
     </form>
   </body>
 </html>
+
+

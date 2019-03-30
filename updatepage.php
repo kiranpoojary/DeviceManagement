@@ -54,3 +54,13 @@ function setLogout()
             </div>
         </div>
     </nav>
+
+
+<?php
+
+
+    echo '<script type="text/javascript">';
+            echo 'window.location.href = "userupdate.php";';
+            echo '</script>'; 
+
+            ?>

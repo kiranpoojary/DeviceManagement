@@ -195,7 +195,10 @@ if (isset($_POST["update"]))
     
     if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
     {
-        rint("no    ");      
+        echo '<script type="text/javascript">';
+            echo 'error_report("failed...!","Not Connected To Database Server", "error");';
+            echo '</script>';
+              
     }
         
     else
