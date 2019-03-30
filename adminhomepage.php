@@ -14,7 +14,7 @@ if (!$con or !mysqli_select_db($con,'DeviceManagement'))
   //alert_user("Error while connecting to database");
   echo '<script type="text/javascript">',
   'error_report("Something Went Wrong","Error while Connecting to Database server", "error");',
-  '</script>'; 
+  '</script>';
 }
 else
 {
@@ -98,10 +98,9 @@ function setLogout()
 
   }
 </style>
-
 </head>
   <body>
-    <form method="post" action="hello_world.php">
+    <form method="post" action="get_report.php">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#" style="margin-left: -60px;">DeviceManagement</a>
@@ -121,7 +120,6 @@ function setLogout()
             </div>
         </div>
     </nav>
-
     <!-- Hero Section-->
     <section class="bg-light">
       <div class="container"> 
