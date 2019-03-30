@@ -207,18 +207,18 @@ else
 
 
 <div>
-  <input style="width: 200px" type="text" name="dev" class="form-control">
+  <input style="width: 200px" type="text"  name="dev"  placeholder="Enter Device ID" class="form-control">
   <br>
-  <input type="submit" name="dev" value="Get Device Report" class="bttn">
+  <input type="submit" name="devb" value="Get Device Report"  class="bttn">
 </div>   
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <center>
 <div>
-  <input style="width: 200px" type="text" name="dev" class="form-control">
+  <input style="width: 200px" type="text" name="mntn" placeholder="Enter Maintenance ID" class="form-control">
   <br>
-  <input type="submit" name="mntn" value="Get Maintenance Report" class="bttn">
+  <input type="submit" name="mntnb" value="Get Maintenance Report"  class="bttn">
 </div>
 </center>
 </div>
