@@ -9,17 +9,14 @@ $pasw=$_SESSION["psw"];
 include_once('Mailer/src/PHPMailerAutoload.php');
 include_once('Mailer/src/SMTP.php');
 
-
-
 $mail = new PHPMailer;
-$mail->isSMTP();                            // Set mailer to use SMTP
+$mail->isSMTP();                           // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                     // Enable SMTP authentication
-$mail->Username = $emailid;          // SMTP username
-$mail->Password = $pasw; // SMTP password
+$mail->Username = $_SESSION["adminemail"];          // SMTP username
+$mail->Password = $_SESSION["adminpassword"]; // SMTP password
 $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                          // TCP port to connect to
-
 $mail->setFrom('info@example.com', 'PESU MCA');
 $mail->addReplyTo('kiranpoojary483@gmail.com', 'Device Management');
 $mail->addAddress('$emailid');   // Add a recipient
@@ -47,8 +44,6 @@ echo "<script type='text/javascript'>alert('$message');</script>";
 header("refresh:0; url=index.php");
                 
 }
-
-
 
 
 
@@ -2068,18 +2063,26 @@ class PHPMailer
                             $this->AuthType,
                             $this->oauth
                         )
-                        ) {
+                        ) 
+
+
+
+                        {
                             throw new Exception($this->lang('authenticate'));
+                            
                         }
                     }
 
                     return true;
                 } catch (Exception $exc) {
+                    
                     $lastexception = $exc;
                     $this->edebug($exc->getMessage());
                     // We must have connected, but then failed TLS or Auth, so close connection nicely
                     $this->smtp->quit();
+                    
                 }
+
             }
         }
         // If we get here, all connection attempts have failed, so close connection hard

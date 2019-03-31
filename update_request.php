@@ -103,12 +103,8 @@ function setLogout()
 <div class="container">
  <h3> Enter Details About Update request(with device/maintenanceID)</h3>
           <center>
-            <textarea rows="10" cols="120" placeholder="Enter Details" name="details" class="form-control" autocomplete="off" required autofocus/>
+            <textarea rows="10" cols="120"  name="details" class="form-control" autocomplete="off" required autofocus/>
           </textarea>
-          </center>
-          <br/>
-          <center>
-            <input type="password" name="pass" placeholder="Registered Email password" class="form-control" required="">
           </center>
           <br/>
           <center>
@@ -265,48 +261,17 @@ else
 
 
 
-
+    
     <!-- Footer-->
-    <div class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 mb-4 mb-lg-0">
-            <h5>Bootstrap 101</h5>
-            <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@landy.com" class="text-dark">hello@bootstrap101.com</a></li>
-              <li><a href="tel:123456789" class="text-dark">+00 123 456 789</a></li>
-            </ul>
-            <p class="text-muted">Laborum aute enim consectetur eu laboris commodo.</p>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <h5>Pages</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#" class="text-muted">Nisi in commodo</a></li>
-              <li> <a href="#" class="text-muted">reprehenderit</a></li>
-              <li> <a href="#" class="text-muted">Nostrud</a></li>
-              <li> <a href="#" class="text-muted">Et eu eu</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <h5>Favourites</h5>
-            <ul class="links list-unstyled">
-              <li> <a href="#" class="text-muted">Minim labore nulla</a></li>
-              <li> <a href="#" class="text-muted">Nulla qui nisi</a></li>
-              <li> <a href="#" class="text-muted">Iris Vor Arnim</a></li>
-              <li> <a href="#" class="text-muted">Consectetur cupidatat</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <div class="py-3 bg-dark text-white">
       <div class="container">
         <div class="row">
           <div class="col-md-7 text-center text-md-left">
-            <p class="mb-md-0">© 2018 Your company. All rights reserved.</p>
+            <p class="mb-md-0">© 2019 PES University. All rights reserved.</p>
           </div>
           <div class="col-md-5 text-center text-md-right">
-            <p class="mb-0">Template By <a href="https://bootstrapious.com/" class="external text-white">Bootstrapious</a></p>
+            <p class="mb-0">www.pes.edu <a href="https://bootstrapious.com/" class="external text-white"></a></p>
           </div>
         </div>
       </div>
@@ -316,16 +281,14 @@ else
 </html>
 
 
-
-
 <?php
 if (isset($_POST["details"]) && !empty($_POST["details"])) 
 {
-  $var_email=$_SESSION["email"];
+
   $_SESSION["subject"]="Device Management";
   $_SESSION["body1"]="Request For Update";
   $_SESSION["main"]=$_POST["details"];
-  $_SESSION["psw"]=$_POST["pass"];
+  
 
 
   echo ("<script LANGUAGE='JavaScript'>

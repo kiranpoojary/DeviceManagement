@@ -95,9 +95,6 @@ img.avatar {
 						<input type="text" placeholder="Enter UserID" name="uid" class="form-control" autocomplete="off" required autofocus>
 					</center>
 					<br/>
-					<center>
-						<input type="password" placeholder="Enter Registred Mail Password" name="psw" class="form-control" value="" required>
-					</center>
 					<br>
 					<center>
 						<input type="submit" name="sub" value="Recover Password" class="btn btn-lg btn-success btn-block">
@@ -145,12 +142,13 @@ else
 						while($row = $result->fetch_assoc())
 						{
         					$var_uid=$row["userid"];
+        					$var_psw=$row["password"];
         					$var_email=$row["email"];
         					$var_role=$row["privilage"];
         					
         				}
         				$_SESSION["email"]=$var_email;
-        				$_SESSION["psw"]=$_POST["psw"];
+        				$_SESSION["psw"]=$var_psw;
   						$_SESSION["subject"]="Device Management";
   						$_SESSION["body1"]="Password Recovered";				
                 		$_SESSION["uid"]=$var_uid;
@@ -163,7 +161,7 @@ else
 				//display invalid login credential alert
 				else 		
 				{  
-					echo '<script type="text/javascript">';echo 'error_report("Invalid Credential!","Please Enter Valid password and UserID", "error");
+					echo '<script type="text/javascript">';echo 'error_report("Invalid Credential!","Please Enter Valid  UserID", "error");
 						';echo '</script>';
 				}
 

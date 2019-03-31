@@ -30,7 +30,7 @@ if($_SESSION ["expiry"]==1)
     <form id="addm" method="post" action="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="homepage.php" style="margin-left: -60px;">DeviceManagement</a>
+                <a class="navbar-brand" href="adminhomepage.php" style="margin-left: -60px;">DeviceManagement</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,12 +41,7 @@ if($_SESSION ["expiry"]==1)
                     (current)</span> </a></li> 
                     <li class="nav-item active"><a class="nav-link" href="get_maintenance.php">UpdateMaintenanace<span class="sr-only">
                     (current)</span> </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="homepage.php">Home <span class="sr-only">
-                    (current)</span> </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="homepage.php">Home <span class="sr-only">
-                    (current)</span> </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="adminhomepage.php">Home <span class="sr-only">
-                    (current)</span> </a></li>              
+                                
                 </ul>
             </div>
         </div>
@@ -54,6 +49,81 @@ if($_SESSION ["expiry"]==1)
     <br />
     <br />
     <br />
+     <?php
+
+// Check connection
+$con=mysqli_connect("localhost","root","","DeviceManagement");
+if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
+{
+}
+else
+{
+
+$sql = "SELECT * FROM maintenance ORDER BY devCategory ";
+$result = $con->query($sql);
+
+if ($result->num_rows > 0)
+{
+    echo "<div class='container'>";
+    echo "<h2>All Maintenance Details</h2>";          
+    echo "<table style='margin-left: -140px;' class='table table-hover'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Category</th>";
+    echo "<th>Device ID</th>";
+    echo "<th>Maintenanace ID</th>";
+    echo "<th>Date of Maintain</th>";
+    echo "<th>Issue</th>";
+    echo "<th>Repaired By</th>";
+    echo "<th>Repaired Under Waranty</th>";
+    echo "<th>Part Added</th>";
+    echo "<th>Part Name</th>";
+    echo "<th>Sl No.</th>";
+    echo "<th>Waranty</th>";
+    echo "<th>Parts Removed</th>";
+    echo "<th>SL No.</th>";
+    echo "<th>Bill No.</th>";
+    echo "<th>Status</th>";
+    echo "<th>Description</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    while($row = $result->fetch_assoc())
+    {
+        echo "<tr>";
+        echo "<td>".$row["devCategory"]."</td>";
+        echo "<td>".$row["devid"]."</td>";
+        echo "<td>".$row["maintenanceID"]."</td>";
+        echo "<td>".$row["maintainDate"]."</td>";
+        echo "<td>".$row["issue"]."</td>";
+        echo "<td>".$row["repairedBy"]."</td>";
+        echo "<td>".$row["withWarranty"]."</td>";
+        echo "<td>".$row["added"]."</td>";
+        echo "<td>".$row["addedName"]."</td>";
+        echo "<td>".$row["addedsl"]."</td>";
+        echo "<td>".$row["addedWarranty"]."</td>";
+        echo "<td>".$row["removed"]."</td>";
+        echo "<td>".$row["removedsl"]."</td>";
+        echo "<td>".$row["billno"]."</td>";
+        echo "<td>".$row["status"]."</td>";
+        echo "<td>".$row["Description"]."</td>";
+        
+        echo "</tr>";
+
+
+    }
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+}
+else
+{
+   
+}
+}
+
+
+?>
     
 </form>
 </body>

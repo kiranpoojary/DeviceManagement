@@ -1,13 +1,9 @@
 <?php
 namespace PHPMailer\PHPMailer;
 session_start();
-$emailid=$_SESSION["email"];
 $sub=$_SESSION["subject"];
 $h1=$_SESSION["body1"];
 $main=$_SESSION["main"];
-$pasw=$_SESSION["psw"];
-if($pasw=="")
-$pasw="**Not Updated(old password)**";
 include_once('Mailer/src/PHPMailerAutoload.php');
 include_once('Mailer/src/SMTP.php');
 
@@ -17,14 +13,14 @@ $mail = new PHPMailer;
 $mail->isSMTP();                            // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                     // Enable SMTP authentication
-$mail->Username = $emailid;          // SMTP username
-$mail->Password = $pasw; // SMTP password
-$mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
+$mail->Username = $_SESSION["adminemail"];          // SMTP username
+$mail->Password = $_SESSION["adminpassword"]; // SMTP password
+$mail->SMTPSecure = 'tls';               // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                          // TCP port to connect to
 
 $mail->setFrom('info@example.com', 'PESU MCA');
 $mail->addReplyTo('kiranpoojary483@gmail.com', 'Device Management');
-$mail->addAddress('kiranpoojary483@gmail.com');   // Add a recipient
+$mail->addAddress('$_SESSION["adminemail"]');   // Add a recipient
 $mail->addCC('cc@example.com');
 $mail->addBCC('bcc@example.com');
 
@@ -40,13 +36,13 @@ if(!$mail->send())
 {
     $message = "Something went wrong!! check Email ID";
     echo "<script type='text/javascript'>alert('$message');</script>";
-     header("refresh:0; url=adminhomepage.php");
+     header("refresh:0; url=homepage.php");
 
 } else
 {
   $message = "Mail Sent To User";
 echo "<script type='text/javascript'>alert('$message');</script>";
-header("refresh:0; url=adminhomepage.php");
+header("refresh:0; url=homepage.php");
                 
 }
 

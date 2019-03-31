@@ -110,11 +110,11 @@ function setLogout()
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">
+                    <li class="nav-item active"><a class="nav-link" href="adminhomepage.php">Home <span class="sr-only">
                         (current)</span> </a></li>
                     <li class="nav-item"><a class="nav-link" href="users.php">Users</a> </li>
                     <li class="nav-item"><a class="nav-link" href="admin_menu.php" >Update</a> </li>
-                    <li class="nav-item"><a class="nav-link" href="#">Reports</a> </li>
+                    <li class="nav-item"><a class="nav-link" href="change_admin_password.php">Change Password</a> </li>
                     <li class="nav-item"><a class="nav-link" href="javascript:setLogout()">Logout</a> </li>
                 </ul>
             </div>
@@ -228,29 +228,29 @@ else
       <div class="container">
         <div class="row">
           <div class="col-lg-4 mb-4 mb-lg-0">
-            <h5>Bootstrap 101</h5>
+            <h5>Ranked #1</h5>
             <ul class="contact-info list-unstyled">
-              <li><a href="mailto:sales@landy.com" class="text-dark">hello@bootstrap101.com</a></li>
+              <li><a href="mailto:sales@landy.com" class="text-dark">#1 University in Karnataka (New Universities Under 5 Years) – KSURF.</a></li>
               <li><a href="tel:123456789" class="text-dark">+00 123 456 789</a></li>
             </ul>
             <p class="text-muted">Laborum aute enim consectetur eu laboris commodo.</p>
           </div>
           <div class="col-lg-4 col-md-6">
-            <h5>Pages</h5>
+            <h5>INFORMATION ABOUT</h5>
             <ul class="links list-unstyled">
-              <li> <a href="#" class="text-muted">Nisi in commodo</a></li>
-              <li> <a href="#" class="text-muted">reprehenderit</a></li>
-              <li> <a href="#" class="text-muted">Nostrud</a></li>
-              <li> <a href="#" class="text-muted">Et eu eu</a></li>
+              <li> <a href="#" class="text-muted">PESU Programs</a></li>
+              <li> <a href="#" class="text-muted">Admission</a></li>
+              <li> <a href="#" class="text-muted">CET</a></li>
+              <li> <a href="#" class="text-muted">PESSAT</a></li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-6">
-            <h5>Favourites</h5>
+            <h5>IMPORTANT INFO</h5>
             <ul class="links list-unstyled">
-              <li> <a href="#" class="text-muted">Minim labore nulla</a></li>
-              <li> <a href="#" class="text-muted">Nulla qui nisi</a></li>
-              <li> <a href="#" class="text-muted">Iris Vor Arnim</a></li>
-              <li> <a href="#" class="text-muted">Consectetur cupidatat</a></li>
+              <li> <a href="#" class="text-muted">UGC Preforma</a></li>
+              <li> <a href="#" class="text-muted">PESU Status Notification From UGC</a></li>
+              <li> <a href="#" class="text-muted">PES University ACT</a></li>
+              <li> <a href="#" class="text-muted">NIRF 2019</a></li>
             </ul>
           </div>
         </div>
@@ -260,10 +260,10 @@ else
       <div class="container">
         <div class="row">
           <div class="col-md-7 text-center text-md-left">
-            <p class="mb-md-0">© 2018 Your company. All rights reserved.</p>
+            <p class="mb-md-0">© 2019 PES University. All rights reserved.</p>
           </div>
           <div class="col-md-5 text-center text-md-right">
-            <p class="mb-0">Template By <a href="https://bootstrapious.com/" class="external text-white">Bootstrapious</a></p>
+            <p class="mb-0">www.pes.edu <a href="https://bootstrapious.com/" class="external text-white"></a></p>
           </div>
         </div>
       </div>

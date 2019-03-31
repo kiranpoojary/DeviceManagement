@@ -109,7 +109,7 @@ if($_SESSION ["expiry"]==1)
  });    
 
 
-
+/*
 
         $(document).ready(function(){  
       $('#m_id').keyup(function(){  
@@ -134,7 +134,7 @@ if($_SESSION ["expiry"]==1)
            return false;
       });  
  });    
-
+*/
 
     </script>
 
@@ -202,6 +202,21 @@ if($_SESSION ["expiry"]==1)
          </div>
       
         </center>
+
+        <br><br>
+<div class="py-3 bg-dark text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 text-center text-md-left">
+            <p class="mb-md-0">© 2018 Your company. All rights reserved.</p>
+          </div>
+          <div class="col-md-5 text-center text-md-right">
+            <p class="mb-0">Template By <a href="https://bootstrapious.com/" class="external text-white">Bootstrapious</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </form>
 </body>
 </html>
