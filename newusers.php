@@ -66,9 +66,6 @@ if($_SESSION ["expiry"]==1)
         UserID*
         <input type="text" name="uid"  placeholder="User ID"  Width="500px" class="form-control" required>
         <br>
-        Password
-        <input type="Password" name="psw" placeholder="Password"   class="form-control" Width="500px" required>
-        <br />
         Email ID
         <input type="text" placeholder="Email ID" name="email" Class="form-control" Width="500px" placeholder="Device Company/Brand" required>
         <br>
@@ -101,16 +98,24 @@ if($_SESSION ["expiry"]==1)
 if (isset($_POST["sub2"]))
 {
     $var_uid=$_POST["uid"];
-    $var_psw=$_POST["psw"];
+    $var_psw=sprintf("%06d", mt_rand(1, 999999));
     $var_email=$_POST["email"];
     $var_type=$_POST["type"];
     $sql="INSERT INTO users (userid,password,email,privilage) VALUES ('$var_uid','$var_psw','$var_email','$var_type')";
             if(mysqli_query($con,$sql))
             {
+                $_SESSION["email"]=$var_email;
+                $_SESSION["subject"]="Device Management";
+                $_SESSION["body1"]="You are Registered to Device Management of PES University";
+                $_SESSION["email"]=$var_uid;
+                $_SESSION["subject"]=$var_psw;
                 echo '<script type="text/javascript">',
                 'error_report("Saved","New Device Category Successfuly Saved ", "success");',
                 '</script>';
-                  print($var_cat);
+
+                header("refresh:0; url=mail.php");
+
+                  
        
                 
             }

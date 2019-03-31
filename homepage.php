@@ -95,7 +95,6 @@ function setLogout()
                         (current)</span> </a></li>
                     <li class="nav-item"><a class="nav-link" href="add_devices.php">Add Device</a> </li>
                     <li class="nav-item"><a class="nav-link" href="add_maintenance.php">Add Maintain</a> </li>
-                    <li class="nav-item"><a class="nav-link" href="">####</a> </li>
                     <li class="nav-item"><a class="nav-link" href="#">Print</a> </li>
                     <li class="nav-item"><a class="nav-link" href="javascript:setLogout()">Logout</a> </li>
                 </ul>

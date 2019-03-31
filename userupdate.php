@@ -20,7 +20,6 @@ if ($result->num_rows > 0)
     while($row = $result->fetch_assoc())
     {     
         $var_uid=$row["userid"];
-        $var_psw=$row["password"];
         $var_email=$row["email"];
         $var_type=$row["privilage"];
     }
@@ -53,7 +52,7 @@ if ($result->num_rows > 0)
         },
         function (isConfirm) {
             if (isConfirm) {
-                window.location.href = "users.php";
+                window.location.href = "mail.php";
                 
                 }
         });
@@ -107,8 +106,6 @@ $(function() {
      
         UserID*
         <input type="text" name="uid" value="<?php echo "$var_uid"; ?>"   placeholder="User ID"  Width="500px" class="form-control" required>
-        Password*
-        <input type="text" name="psw" value="<?php echo "$var_psw"; ?>" Class="form-control" Width="500px" placeholder="Password" required>
         <br>
         Email ID*
         <input type="text" name="eid" value="<?php echo "$var_email"; ?>" Class="form-control" Width="500px" placeholder="Email ID" required>
@@ -168,7 +165,6 @@ if(isset($_POST['up']))
         else
         {
             $var_uid=$_POST["uid"];
-            $var_psw=$_POST["psw"];
             $var_email=$_POST["eid"];
             $var_type=$_POST["type"];
 
@@ -177,9 +173,9 @@ if(isset($_POST['up']))
            
            
             //update query
-            $sql="UPDATE users SET userid='$var_uid',password='$var_psw',email='$var_email',privilage='$var_type' WHERE userid='$var_uid'";
+            $sql="UPDATE users SET userid='$var_uid',email='$var_email',privilage='$var_type' WHERE userid='$var_uid'";
             if(mysqli_query($con,$sql))
-            {
+            {   $_SESSION["email"]=$var_email;
                 echo '<script type="text/javascript">',
                 'error_report("Updated","User Details  Successfuly Updated ", "success");',  //dispaly id pending
                 '</script>';

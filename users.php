@@ -110,7 +110,6 @@ if ($result->num_rows > 0)
     echo "<thead>";
     echo "<tr>";
     echo "<th>Login ID</th>";
-    echo "<th>Password</th>";
     echo "<th>Email</th>";
     echo "<th>Access Type</th>";
     echo "</tr>";
@@ -120,7 +119,6 @@ if ($result->num_rows > 0)
     {
         echo "<tr>";
         echo "<td>".$row["userid"]."</td>";
-        echo "<td>".$row["password"]."</td>";
         echo "<td>".$row["email"]."</td>";
         echo "<td>".$row["privilage"]."</td>";
         echo "</tr>";
