@@ -107,17 +107,13 @@ if (isset($_POST["sub2"]))
                 $_SESSION["email"]=$var_email;
                 $_SESSION["subject"]="Device Management";
                 $_SESSION["body1"]="You are Registered to Device Management of PES University";
-                $_SESSION["email"]=$var_uid;
-                $_SESSION["subject"]=$var_psw;
+                $_SESSION["uid"]=$var_uid;
+                $_SESSION["psw"]=$var_psw;
                 echo '<script type="text/javascript">',
                 'error_report("Saved","New Device Category Successfuly Saved ", "success");',
                 '</script>';
-
                 header("refresh:0; url=mail.php");
-
-                  
-       
-                
+          
             }
             else
             {

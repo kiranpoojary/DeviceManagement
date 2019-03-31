@@ -30,7 +30,7 @@ body
 	box-sizing: border-box;
 	border-radius: 10px;
 	background-color: #000000;
-	opacity: 0.8;
+	opacity: 0.65;
 	padding: 70px 30px;
 }
 
@@ -60,6 +60,24 @@ img.avatar {
 
 
 	}
+
+
+	    function error_report_success($tt,$txt,$ty)
+    {
+        swal({
+            title: $tt,
+            text: $txt,
+            type: $ty,
+            
+
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                window.location.href = "recover_mail.php";
+                
+                }
+        });
+}
 </script>
 
 </head>
@@ -67,7 +85,7 @@ img.avatar {
 	<form action="" method="post">
 		<table width="40%" bgcolor="0099CC" align="center">
 			<br/><br/><br/>
-			<center><h1 style="color:white">Login to Device Management</h1></center>
+			<center><h1 style="color:white">Recover Your Password</h1></center>
 			<div class="imgcontainer">
 				<img src="http://localhost/DeviceManagement/images/anyone.png" alt="Avatar" class="avatar">
 			</div>
@@ -78,24 +96,22 @@ img.avatar {
 					</center>
 					<br/>
 					<center>
-						<input type="password" placeholder="Enter Password" name="psw" class="form-control" value="" required>
+						<input type="password" placeholder="Enter Registred Mail Password" name="psw" class="form-control" value="" required>
 					</center>
-					<br/>
+					<br>
 					<center>
-						<input type="submit" name="sub" value="Login" class="btn btn-lg btn-success btn-block">
+						<input type="submit" name="sub" value="Recover Password" class="btn btn-lg btn-success btn-block">
 					</center>
 					<br/>
 				</div>
-				<div class="container" >
-					<center>
-						<a href="recover_password.php">Forgot password?</a>
-					</center>
+				
 				</div>
 			</div>
 		</table>
 	</form>
 </body>
 </html>
+
 
 <?php
 error_reporting(0);
@@ -105,27 +121,23 @@ $con=mysqli_connect("localhost","root","","DeviceManagement");
 if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
 	{
 	//alert_user("Error while connecting to database");
-	echo '<script type="text/javascript">',
-     'error_report("Something Went Wrong","Error while Connecting to Database server", "error");',
-     '</script>'; 
+	echo '<script type="text/javascript">','error_report("Something Went Wrong","Error while Connecting to Database server", "error");
+	','</script>'; 
 	}
 else
 	{
 		if (isset($_POST["uid"]) && !empty($_POST["uid"])) 
 			{
 
-
 				$uid=$_POST["uid"];
-				$password=$_POST["psw"];
-				//query to check user exist	
-				$result = $con->query("SELECT COUNT(*) FROM users  WHERE userid='$uid'  AND password='$password'"); 
+				$result = $con->query("SELECT COUNT(*) FROM users  WHERE userid='$uid'"); 
 				$row = $result->fetch_assoc();
 				$size = $row['COUNT(*)'];
 				if ($size!=0) 
 				{
 						
 					//query to determine maintainer or admin
-					$sql = "SELECT * FROM users WHERE userid='$uid' AND password='$password' ";
+					$sql = "SELECT * FROM users WHERE userid='$uid' ";
 					$result = $con->query($sql);
 					if ($result->num_rows > 0)
 					{
@@ -137,29 +149,24 @@ else
         					$var_role=$row["privilage"];
         					
         				}
-        				$_SESSION["uid"]=$var_uid;
         				$_SESSION["email"]=$var_email;
-        				$_SESSION["role"]=$var_role;
-        				if($var_role=="Admin")
-        				{
-        					$_SESSION["expiry"]=0;
-							header("refresh:0; url=adminhomepage.php");
-        				}
-        				else
-        					if ($var_role=="User")
-        					{
-        						$_SESSION["expiry"]=0;
-								header("refresh:0; url=homepage.php");
-        					}
+        				$_SESSION["psw"]=$_POST["psw"];
+  						$_SESSION["subject"]="Device Management";
+  						$_SESSION["body1"]="Password Recovered";				
+                		$_SESSION["uid"]=$var_uid;
+                		echo '<script type="text/javascript">';echo 'error_report_success("Successfull!!","Please Check your Registered Email", "success");
+						';echo '</script>';
+
+        				
 					}
 				}
 				//display invalid login credential alert
 				else 		
-				{   
-					echo '<script type="text/javascript">';
-    				echo 'error_report("Invalid Credential!","Please Enter Valid password and UserID", "error");';
-    				echo '</script>';
+				{  
+					echo '<script type="text/javascript">';echo 'error_report("Invalid Credential!","Please Enter Valid password and UserID", "error");
+						';echo '</script>';
 				}
+
 				$con->close();
 			
 			}

@@ -370,39 +370,6 @@ if (isset($_POST["sub2"]))
 }
 
 
-		print($var_cat);
-		print("<br>");
-		print($var_devid);
-		print("<br>");
-		print($var_mdate);
-		print("<br>");
-		print($var_issue);
-		print("<br>");
-		print($var_by);
-		print("<br>");
-		print($var_sts);
-		print("<br>");
-		print($wrnty);
-		print("<br>");
-		print($var_added);
-		print("<br>");
-		print($var_aname);
-		print("<br>");
-		print($var_addedsl);
-		print("<br>");
-		print($var_addedw);
-		print("<br>");
-		print($var_removed);
-		print("<br>");
-		print($var_rname);
-		print("<br>");
-		print($var_rsl);
-		print("<br>");
-		print($var_bill);
-		print("<br>");
-		print($var_descr);		
-		print("<br>");
-
 ?>
 
 

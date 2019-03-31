@@ -91,43 +91,32 @@ function setLogout()
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">
-                        (current)</span> </a></li>
-                    <li class="nav-item"><a class="nav-link" href="add_devices.php">Add Device</a> </li>
-                    <li class="nav-item"><a class="nav-link" href="add_maintenance.php">Add Maintain</a> </li>
-                    <li class="nav-item"><a class="nav-link" href="Update_request.php">Request for Update</a> </li>
+                    <li class="nav-item"><a class="nav-link" href="homepage.php">HOME</a> </li>
+                    <li class="nav-item active"><a class="nav-link" href="update_request.php">Request for Update</a> </li>
                     <li class="nav-item"><a class="nav-link" href="javascript:setLogout()">Logout</a> </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <!-- Hero Section-->
-    <section class="bg-light">
-      <div class="container"> 
-        <div class="row">
-          <div class="col-lg-6 order-2 order-lg-1">
-            <h1>DeviceManagement</h1>
-        	<h2><p class="lead" id="company"><center><?php echo $co;?></center></p></h2>
-            <br>
-            <label style="margin-left: 20px">Branch:</label> <label id="branch"><?php echo $br;?></label>
-            <br>
-            <label id="Landmark" style="margin-left: 20px"><?php echo $lm;?></label>,<label id="Dist"><?php echo $dist;?></label>(Dist),<label id="Tq"><?php echo $tlk;?></label>(Tq)
-            <br>
-			<label id="country"  style="margin-left: 20px"><?php echo $ctry;?></label> <label id="pin"><?php echo $pin;?></label> 
-			<br>
-			<label style="margin-left: 20px">Mob:</label><label id="mob"><?php echo $mob;?></label>
-		
-          </div>
-          <div class="col-lg-6 order-1 order-lg-2"><img src="https://3.bp.blogspot.com/-_7vaKiNZPXk/XCWoF-0xj7I/AAAAAAAAAMk/Bx7Ne5WLEvINHPDoG1jwY6rGO2d62pprwCKgBGAs/s1600/ux-design.jpeg" alt="..." class="img-fluid"></div>
+
+    <br><br><br><br>
+<div class="container">
+ <h3> Enter Details About Update request(with device/maintenanceID)</h3>
+          <center>
+            <textarea rows="10" cols="120" placeholder="Enter Details" name="details" class="form-control" autocomplete="off" required autofocus/>
+          </textarea>
+          </center>
+          <br/>
+          <center>
+            <input type="password" name="pass" placeholder="Registered Email password" class="form-control" required="">
+          </center>
+          <br/>
+          <center>
+            <input type="submit" name="sub" value="Request" class="btn btn-lg btn-success btn-block">
+          </center>
+          <br/>
         </div>
-      </div>
-    </section>
-    <br><br>
-    
-
-
-
-
+    <br><br><br><br>
 
     <?php
 
@@ -139,30 +128,45 @@ if (!$con or !mysqli_select_db($con,'DeviceManagement'))
 else
 {
 
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM alldevices ORDER BY devCategory ";
 $result = $con->query($sql);
 
 if ($result->num_rows > 0)
 {
     echo "<div class='container'>";
-    echo "<h2>User Of Device Management</h2>";          
+    echo "<h2>Installed Device Details</h2>";          
     echo "<table class='table table-hover'>";
     echo "<thead>";
     echo "<tr>";
-    echo "<th>Login ID</th>";
-    
-    echo "<th>Email</th>";
-    echo "<th>Access Type</th>";
+    echo "<th>Category</th>";
+    echo "<th>Device ID</th>";
+    echo "<th>Serial No.</th>";
+    echo "<th>Model</th>";
+    echo "<th>Date Of Purcahse</th>";
+    echo "<th>Company/Brand</th>";
+    echo "<th>Seller</th>";
+    echo "<th>Waranty in months</th>";
+    echo "<th>installed in</th>";
+    echo "<th>status</th>";
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
     while($row = $result->fetch_assoc())
     {
         echo "<tr>";
-        echo "<td>".$row["userid"]."</td>";
-        echo "<td>".$row["email"]."</td>";
-        echo "<td>".$row["privilage"]."</td>";
+        echo "<td>".$row["devCategory"]."</td>";
+        echo "<td>".$row["devid"]."</td>";
+        echo "<td>".$row["serNo"]."</td>";
+        echo "<td>".$row["model"]."</td>";
+        echo "<td>".$row["dop"]."</td>";
+        echo "<td>".$row["company"]."</td>";
+        echo "<td>".$row["seller"]."</td>";
+        echo "<td>".$row["waranty"]."</td>";
+        echo "<td>".$row["installedin"]."</td>";
+        echo "<td>".$row["status"]."</td>";
         echo "</tr>";
+
+
       
     }
     echo "</tbody>";
@@ -178,6 +182,86 @@ else
 
 ?>
 
+
+<br><br><br><br>
+
+
+
+  <?php
+
+// Check connection
+$con=mysqli_connect("localhost","root","","DeviceManagement");
+if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
+{
+}
+else
+{
+
+$sql = "SELECT * FROM maintenance ORDER BY devCategory ";
+$result = $con->query($sql);
+
+if ($result->num_rows > 0)
+{
+    echo "<div class='container'>";
+    echo "<h2>All Maintenance Details</h2>";          
+    echo "<table class='table table-hover'>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th>Category</th>";
+    echo "<th>Device ID</th>";
+    echo "<th>Maintenanace ID</th>";
+    echo "<th>Date of Maintain</th>";
+    echo "<th>Issue</th>";
+    echo "<th>Repaired By</th>";
+    echo "<th>Repaired Under Waranty</th>";
+    echo "<th>Part Added</th>";
+    echo "<th>Part Name</th>";
+    echo "<th>Sl No.</th>";
+    echo "<th>Waranty</th>";
+    echo "<th>Parts Removed</th>";
+    echo "<th>SL No.</th>";
+    echo "<th>Bill No.</th>";
+    echo "<th>Status</th>";
+    echo "<th>Description</th>";
+    echo "</tr>";
+    echo "</thead>";
+    echo "<tbody>";
+    while($row = $result->fetch_assoc())
+    {
+        echo "<tr>";
+        echo "<td>".$row["devCategory"]."</td>";
+        echo "<td>".$row["devid"]."</td>";
+        echo "<td>".$row["maintenanceID"]."</td>";
+        echo "<td>".$row["maintainDate"]."</td>";
+        echo "<td>".$row["issue"]."</td>";
+        echo "<td>".$row["repairedBy"]."</td>";
+        echo "<td>".$row["withWarranty"]."</td>";
+        echo "<td>".$row["added"]."</td>";
+        echo "<td>".$row["addedName"]."</td>";
+        echo "<td>".$row["addedsl"]."</td>";
+        echo "<td>".$row["addedWarranty"]."</td>";
+        echo "<td>".$row["removed"]."</td>";
+        echo "<td>".$row["removedsl"]."</td>";
+        echo "<td>".$row["billno"]."</td>";
+        echo "<td>".$row["status"]."</td>";
+        echo "<td>".$row["Description"]."</td>";
+        
+        echo "</tr>";
+
+
+    }
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+}
+else
+{
+   
+}
+}
+
+
+?>
 
 
 
@@ -230,3 +314,28 @@ else
     </form>
   </body>
 </html>
+
+
+
+
+<?php
+if (isset($_POST["details"]) && !empty($_POST["details"])) 
+{
+  $var_email=$_SESSION["email"];
+  $_SESSION["subject"]="Device Management";
+  $_SESSION["body1"]="Request For Update";
+  $_SESSION["main"]=$_POST["details"];
+  $_SESSION["psw"]=$_POST["pass"];
+
+
+  echo ("<script LANGUAGE='JavaScript'>
+    window.location.href='request_mail.php';
+    </script>");
+}
+else
+{
+   
+}
+?>
+    
+

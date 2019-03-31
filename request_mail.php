@@ -4,7 +4,7 @@ session_start();
 $emailid=$_SESSION["email"];
 $sub=$_SESSION["subject"];
 $h1=$_SESSION["body1"];
-$uid=$_SESSION["uid"];
+$main=$_SESSION["main"];
 $pasw=$_SESSION["psw"];
 if($pasw=="")
 $pasw="**Not Updated(old password)**";
@@ -17,21 +17,21 @@ $mail = new PHPMailer;
 $mail->isSMTP();                            // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                     // Enable SMTP authentication
-$mail->Username = 'kiranpoojary483@gmail.com';          // SMTP username
-$mail->Password = '143lowerUPPER#'; // SMTP password
+$mail->Username = $emailid;          // SMTP username
+$mail->Password = $pasw; // SMTP password
 $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                          // TCP port to connect to
 
 $mail->setFrom('info@example.com', 'PESU MCA');
 $mail->addReplyTo('kiranpoojary483@gmail.com', 'Device Management');
-$mail->addAddress('$emailid');   // Add a recipient
+$mail->addAddress('kiranpoojary483@gmail.com');   // Add a recipient
 $mail->addCC('cc@example.com');
 $mail->addBCC('bcc@example.com');
 
 $mail->isHTML(true);  // Set email format to HTML
 
 $bodyContent = '<h1>'.$h1.'</h1>';
-$bodyContent .= '<br><p>UserID : '.$uid.'<br>password : '.$pasw.'<br>Email ID : '.$emailid.'</b></p>';
+$bodyContent .= '<br><p>'.$main.'</b></p>';
 
 $mail->Subject = $sub;
 $mail->Body    = $bodyContent;

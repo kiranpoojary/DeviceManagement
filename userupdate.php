@@ -173,9 +173,13 @@ if(isset($_POST['up']))
            
            
             //update query
-            $sql="UPDATE users SET userid='$var_uid',email='$var_email',privilage='$var_type' WHERE userid='$var_uid'";
+            $sql="UPDATE users SET userid='$var_uid',email='$var_email',privilage='$var_type' WHERE userid='$uid'";
             if(mysqli_query($con,$sql))
             {   $_SESSION["email"]=$var_email;
+                $_SESSION["subject"]="Device Management";
+                $_SESSION["body1"]="Your Device Management Account Updated";
+                $_SESSION["uid"]=$var_uid;
+                $_SESSION["psw"]="";
                 echo '<script type="text/javascript">',
                 'error_report("Updated","User Details  Successfuly Updated ", "success");',  //dispaly id pending
                 '</script>';

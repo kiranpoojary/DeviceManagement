@@ -6,8 +6,6 @@ $sub=$_SESSION["subject"];
 $h1=$_SESSION["body1"];
 $uid=$_SESSION["uid"];
 $pasw=$_SESSION["psw"];
-if($pasw=="")
-$pasw="**Not Updated(old password)**";
 include_once('Mailer/src/PHPMailerAutoload.php');
 include_once('Mailer/src/SMTP.php');
 
@@ -17,8 +15,8 @@ $mail = new PHPMailer;
 $mail->isSMTP();                            // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                     // Enable SMTP authentication
-$mail->Username = 'kiranpoojary483@gmail.com';          // SMTP username
-$mail->Password = '143lowerUPPER#'; // SMTP password
+$mail->Username = $emailid;          // SMTP username
+$mail->Password = $pasw; // SMTP password
 $mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                          // TCP port to connect to
 
@@ -40,13 +38,13 @@ if(!$mail->send())
 {
     $message = "Something went wrong!! check Email ID";
     echo "<script type='text/javascript'>alert('$message');</script>";
-     header("refresh:0; url=adminhomepage.php");
+     header("refresh:0; url=index.php");
 
 } else
 {
   $message = "Mail Sent To User";
 echo "<script type='text/javascript'>alert('$message');</script>";
-header("refresh:0; url=adminhomepage.php");
+header("refresh:0; url=index.php");
                 
 }
 
@@ -4612,9 +4610,6 @@ class PHPMailer
         $this->oauth = $oauth;
     }
 }
-
-
-
 
 ?>
 

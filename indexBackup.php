@@ -88,7 +88,7 @@ img.avatar {
 				</div>
 				<div class="container" >
 					<center>
-						<a href="recover_password.php">Forgot password?</a>
+						<a href="forgot_password.php">Forgot password?</a>
 					</center>
 				</div>
 			</div>
@@ -113,8 +113,6 @@ else
 	{
 		if (isset($_POST["uid"]) && !empty($_POST["uid"])) 
 			{
-
-
 				$uid=$_POST["uid"];
 				$password=$_POST["psw"];
 				//query to check user exist	
@@ -123,42 +121,30 @@ else
 				$size = $row['COUNT(*)'];
 				if ($size!=0) 
 				{
-						
 					//query to determine maintainer or admin
-					$sql = "SELECT * FROM users WHERE userid='$uid' AND password='$password' ";
-					$result = $con->query($sql);
-					if ($result->num_rows > 0)
-					{
-						 // output data of each row
-						while($row = $result->fetch_assoc())
-						{
-        					$var_uid=$row["userid"];
-        					$var_email=$row["email"];
-        					$var_role=$row["privilage"];
-        					
-        				}
-        				$_SESSION["uid"]=$var_uid;
-        				$_SESSION["email"]=$var_email;
-        				$_SESSION["role"]=$var_role;
-        				if($var_role=="Admin")
-        				{
-        					$_SESSION["expiry"]=0;
-							header("refresh:0; url=adminhomepage.php");
-        				}
-        				else
-        					if ($var_role=="User")
-        					{
-        						$_SESSION["expiry"]=0;
-								header("refresh:0; url=homepage.php");
-        					}
+					$result2 = $con->query("SELECT COUNT(*) FROM users  WHERE userid='$uid'  AND password='$password' AND privilage='User'");
+					$row2 = $result2->fetch_assoc();
+					$size2 = $row2['COUNT(*)'];
+					if ($size2!=0) 
+					{	
+						
+						$_SESSION["expiry"]=0;
+						header("refresh:0; url=homepage.php");
 					}
+					else
+					{
+						
+						$_SESSION["expiry"]=0;
+						header("refresh:0; url=adminhomepage.php");
+					}
+
 				}
 				//display invalid login credential alert
 				else 		
 				{   
 					echo '<script type="text/javascript">';
     				echo 'error_report("Invalid Credential!","Please Enter Valid password and UserID", "error");';
-    				echo '</script>';
+    				echo '</script>'; 
 				}
 				$con->close();
 			
