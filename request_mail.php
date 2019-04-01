@@ -1,28 +1,29 @@
 <?php
 namespace PHPMailer\PHPMailer;
 session_start();
+$uid=$_SESSION["uid"];
 $sub=$_SESSION["subject"];
 $h1=$_SESSION["body1"];
 $main=$_SESSION["main"];
+$h1.=$uid;
 include_once('Mailer/src/PHPMailerAutoload.php');
 include_once('Mailer/src/SMTP.php');
 
 
 
 $mail = new PHPMailer;
-$mail->isSMTP();                            // Set mailer to use SMTP
+$mail->isSMTP();                           // Set mailer to use SMTP
 $mail->Host = 'smtp.gmail.com';             // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                     // Enable SMTP authentication
 $mail->Username = $_SESSION["adminemail"];          // SMTP username
 $mail->Password = $_SESSION["adminpassword"]; // SMTP password
-$mail->SMTPSecure = 'tls';               // Enable TLS encryption, `ssl` also accepted
+$mail->SMTPSecure = 'tls';                  // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                          // TCP port to connect to
-
-$mail->setFrom('info@example.com', 'PESU MCA');
-$mail->addReplyTo('kiranpoojary483@gmail.com', 'Device Management');
-$mail->addAddress('$_SESSION["adminemail"]');   // Add a recipient
-$mail->addCC('cc@example.com');
-$mail->addBCC('bcc@example.com');
+$mail->setFrom($_SESSION["adminemail"], 'PESU MCA');
+$mail->addReplyTo('$_SESSION["adminemail"]', 'Device Management');
+$mail->addAddress($_SESSION["adminemail"]);   // Add a recipient
+//$mail->addCC('cc@example.com');
+//$mail->addBCC('bcc@example.com');
 
 $mail->isHTML(true);  // Set email format to HTML
 

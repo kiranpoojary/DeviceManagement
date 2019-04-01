@@ -204,6 +204,7 @@ if ($result->num_rows > 0)
     while($row = $result->fetch_assoc())
     {
     	$var_cat=$row["devCategory"];
+        $var_did=$row["devid"];
     	$var_mdate=$row["maintainDate"];
         $var_issue=$row["issue"];
         $var_by=$row["repairedBy"];
@@ -295,52 +296,59 @@ $pdf->Cell(20, 26,": $var_cat",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,65);
+$pdf->setXY(50,64);
+$pdf->Cell(20, 26,"Device ID",0,0,'L');
+$pdf->setXY(110,64);
+$pdf->Cell(20, 26,": $var_did",0,0,'L');
+
+$pdf->Ln();
+
+$pdf->setXY(50,79);
 $pdf->Cell(20, 26,"Device Maintenance ID",0,0,'L');
-$pdf->setXY(110,65);
+$pdf->setXY(110,79);
 $pdf->Cell(20, 26,": $var_mid",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,80);
+$pdf->setXY(50,93);
 $pdf->Cell(20, 26,"Maintenance Date.",0,0,'L');
-$pdf->setXY(110,80);
+$pdf->setXY(110,93);
 $pdf->Cell(20, 26,": $var_mdate",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,95);
+$pdf->setXY(50,107);
 $pdf->Cell(20, 26,"Problem Reported",0,0,'L');
-$pdf->setXY(110,95);
+$pdf->setXY(110,107);
 $pdf->Cell(20, 26,": $var_issue",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,110);
+$pdf->setXY(50,121);
 $pdf->Cell(20, 26,"Repaired by",0,0,'L');
-$pdf->setXY(110,110);
+$pdf->setXY(110,121);
 $pdf->Cell(20, 26,": $var_by",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,125);
+$pdf->setXY(50,132);
 $pdf->Cell(20, 26,"After Repair Status",0,0,'L');
-$pdf->setXY(110,125);
+$pdf->setXY(110,134);
 $pdf->Cell(20, 26,": $var_sts",0,0,'L');
 
 $pdf->Ln();
 
 $pdf->SetFont('Times', 'BI', 12);
-$pdf->setXY(50,140);
+$pdf->setXY(50,142);
 $pdf->Cell(20, 26,"Reapaired With Waranty",0,0,'L');
-$pdf->setXY(110,140);
+$pdf->setXY(110,142);
 $pdf->Cell(20, 26,": $var_warranty",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,155);
+$pdf->setXY(50,154);
 $pdf->Cell(20, 26,"Parts Added",0,0,'L');
-$pdf->setXY(110,155);
+$pdf->setXY(110,154);
 $pdf->Cell(20, 26,": $var_added",0,0,'L');
 
 $pdf->Ln();
@@ -359,7 +367,7 @@ $pdf->Cell(20, 26,": $var_addedsl",0,0,'L');
 
 $pdf->Ln();
 
-$pdf->setXY(50,194);
+$pdf->setXY(50,193);
 $pdf->Cell(20, 26,"Added Part Waranty",0,0,'L');
 $pdf->setXY(110,194);
 $pdf->Cell(20, 26,": $var_addedw",0,0,'L');

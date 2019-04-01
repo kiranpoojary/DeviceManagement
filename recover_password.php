@@ -147,6 +147,7 @@ else
         					$var_role=$row["privilage"];
         					
         				}
+        				
         				$_SESSION["email"]=$var_email;
         				$_SESSION["psw"]=$var_psw;
   						$_SESSION["subject"]="Device Management";

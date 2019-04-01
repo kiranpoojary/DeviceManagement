@@ -83,16 +83,7 @@ $(function() {
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                     <li class="nav-item active"><a class="nav-link" href="adminhomepage.php">Add_Device<span class="sr-only">
-                    (current)</span> </a>
-                </li> 
-                 <li class="nav-item active"><a class="nav-link" href="add_category.php">Add_Category<span class="sr-only">
-                    (current)</span> </a>
-                </li>              
-                </ul>
-            </div>
+           
         </div>
     </nav>
     <br />
@@ -108,7 +99,7 @@ $(function() {
         <input type="text" name="uid" value="<?php echo "$var_uid"; ?>"   placeholder="User ID"  Width="500px" class="form-control" required>
         <br>
         Email ID*
-        <input type="text" name="eid" value="<?php echo "$var_email"; ?>" Class="form-control" Width="500px" placeholder="Email ID" required>
+        <input type="email" pattern="[^ @]*@[^ @]*" size="35" name="eid" value="<?php echo "$var_email"; ?>" Class="form-control" Width="500px" placeholder="Email ID" required>
         <br />
         Select User Type
         <input id="tags" name="type" value="<?php echo "$var_type"; ?>" class="form-control" placeholder="User/Admin" required>
@@ -172,7 +163,7 @@ if(isset($_POST['up']))
             
            
            
-            //update query
+            //update query 
             $sql="UPDATE users SET userid='$var_uid',email='$var_email',privilage='$var_type' WHERE userid='$uid'";
             if(mysqli_query($con,$sql))
             {   $_SESSION["email"]=$var_email;
@@ -227,6 +218,7 @@ if(isset($_POST['del']))
             $sql="DELETE FROM users  WHERE userid='$var_uid'";
             if(mysqli_query($con,$sql))
             {
+                $_SESSION["body1"]="Your Device Management Account Removed";
                 echo '<script type="text/javascript">',
                 'error_report("REMOVED","User Details  Successfuly Removed ", "success");',  //dispaly id pending
                 '</script>';

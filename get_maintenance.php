@@ -109,32 +109,6 @@ if($_SESSION ["expiry"]==1)
  });    
 
 
-/*
-
-        $(document).ready(function(){  
-      $('#m_id').keyup(function(){  
-           var m_query = $(this).val();  
-           if(m_query != '')  
-           {  
-                $.ajax({  
-                     url:"searchid.php",  
-                     method:"POST",
-                     data:{m_query:m_query},  
-                     success:function(data)  
-                     {  
-                          $('#IDList2').fadeIn();  
-                          $('#IDList2').html(data);  
-                     }  
-                });  
-           }  
-      });  
-      $(document).on('click', 'li', function(){  
-           $('#m_id').val($(this).text());  
-           $('#IDList2').fadeOut();
-           return false;
-      });  
- });    
-*/
 
     </script>
 
@@ -164,7 +138,7 @@ if($_SESSION ["expiry"]==1)
 
   
     <div style="background: #EEFFEE; border: 4px solid black" id="newcatadd" class="form-control col-md-6 col-md-offset-2">
-      <h2><span>Enter Device Details</span></h2>
+      <h2><span>Enter Maintenan Details</span></h2>
         Device Category*
         <div class="" style="width:300px;">
           <select  name="catdrop" id="kk" class="autosuggest form-control" style="height: 35px">
@@ -183,7 +157,7 @@ if($_SESSION ["expiry"]==1)
       </div>
         <br />
         <br />
-        Item ID*
+        Device ID*
         <div class="" style="width:300px;">             
             <input type="text" name="dev_id"  id="dev_id" class="form-control" placeholder="Enter Device ID" autocomplete="off" required="" />  
             <div id="IDList"></div>  
@@ -191,7 +165,7 @@ if($_SESSION ["expiry"]==1)
            `<br>
         Maintenance ID*
         <div class="" style="width:300px;">             
-            <input type="text" name="m_id"  id="m_id" class="form-control" placeholder="Enter Device ID" autocomplete="off" required="" />  
+            <input type="text" name="m_id"  id="m_id" class="form-control" placeholder="Enter Maintenance ID" autocomplete="off" required="" />  
             <div id="IDList2"></div>  
            </div>
            `<br>
@@ -230,7 +204,7 @@ if(isset($_POST['sub2']) && !empty($_POST['dev_id']))
 
 
         //query to check user exist 
-        $result = $con->query("SELECT COUNT(*) FROM maintenance  WHERE devid='$id'  AND maintenanceID='$mid'"); 
+        $result = $con->query("SELECT COUNT(*) FROM maintenance  WHERE devCategory='$cat' AND devid='$id'  AND maintenanceID='$mid'"); 
         $row = $result->fetch_assoc();
         $size = $row['COUNT(*)'];
         if ($size>0) 

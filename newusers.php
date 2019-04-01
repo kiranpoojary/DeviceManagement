@@ -58,7 +58,7 @@ if($_SESSION ["expiry"]==1)
         <input type="text" name="uid"  placeholder="User ID"  Width="500px" class="form-control" required>
         <br>
         Email ID
-        <input type="text" placeholder="Email ID" name="email" Class="form-control" Width="500px" placeholder="Device Company/Brand" required>
+        <input type="email" pattern="[^ @]*@[^ @]*" placeholder="Email ID" name="email" Class="form-control" Width="500px" placeholder="Device Company/Brand" required>
         <br>
         Select User Type
         <select name="type" ID="DropDownList1"  Width="500px" Class="form-control" > 

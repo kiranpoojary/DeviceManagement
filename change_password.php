@@ -70,7 +70,7 @@
     <center>
         <div style="background: #EEFFEE; border: 4px solid black" id="newcatadd" class="form-control col-md-6 col-md-offset-2">
             <br>
-            <h2 class="style2"><u>Add New Category</u></h2> 
+            <h2 class="style2"><u>Change Your Password</u></h2> 
             <br>
             
             <input type="password" name="new"  Width="500px" placeholder="New Password" Visible="false" class="autosuggest form-control" required>

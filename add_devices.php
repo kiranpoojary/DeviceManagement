@@ -168,7 +168,7 @@ if(isset($_POST['sub2']))
             $month = date('m',$date);
             $year  = date('Y',$date);        
             $id=$var_cat.$day.$month.$year."00".$last; 
-            echo "$id";
+           
 
 
            

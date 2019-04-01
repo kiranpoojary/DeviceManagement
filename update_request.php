@@ -103,7 +103,7 @@ function setLogout()
 <div class="container">
  <h3> Enter Details About Update request(with device/maintenanceID)</h3>
           <center>
-            <textarea rows="10" cols="120"  name="details" class="form-control" autocomplete="off" required autofocus/>
+            <textarea rows="10" cols="120"  name="details" class="form-control" autocomplete="off" required/>
           </textarea>
           </center>
           <br/>
@@ -284,12 +284,10 @@ else
 <?php
 if (isset($_POST["details"]) && !empty($_POST["details"])) 
 {
-
+  $_SESSION["uid"]=$_SESSION["uid"];
   $_SESSION["subject"]="Device Management";
-  $_SESSION["body1"]="Request For Update";
+  $_SESSION["body1"]="Update Request From ID:";
   $_SESSION["main"]=$_POST["details"];
-  
-
 
   echo ("<script LANGUAGE='JavaScript'>
     window.location.href='request_mail.php';
