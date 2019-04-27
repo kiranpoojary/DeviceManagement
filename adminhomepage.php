@@ -75,6 +75,32 @@ function setLogout()
 
 }
 
+
+  $(document).ready(function(){  
+      $('#dev_id').keyup(function(){  
+           var query = $(this).val();  
+           if(query != '')  
+           {  
+                $.ajax({  
+                     url:"searchid.php",  
+                     method:"POST",
+                     data:{query:query},  
+                     success:function(data)  
+                     {  
+                          $('#IDList').fadeIn();  
+                          $('#IDList').html(data);  
+                     }  
+                });  
+           }  
+      });  
+      $(document).on('click', 'li', function(){  
+           $('#dev_id').val($(this).text());  
+           $('#IDList').fadeOut();
+           return false;
+      });  
+ });    
+
+
 </script>
 
 <style type="text/css">
@@ -199,6 +225,29 @@ else
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<div>
+<div class="" style="width:300px;">
+          <select  name="catdrop" id="kk" class="autosuggest form-control" style="height: 35px">
+          <?php
+          $result=mysqli_query($con,"select devCategory from categories");
+          while ($row=mysqli_fetch_array($result)) 
+          {
+          ?>
+          <option><?php echo $row["devCategory"];  ?></option>
+          <?php   
+          }
+    //$a=$_POST["catdrop"];
+        //$_SESSION["cc"]=$a;
+
+          ?>
+          </select>         
+      </div><br>
+  <input type="submit" name="catreport" value="Get Report"  class="bttn">
+</div>   
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 

@@ -38,6 +38,13 @@ if ($result->num_rows > 0)
 
     }
 }
+else
+{
+    $message = "No Device Found In This Category";
+echo "<script type='text/javascript'>alert('$message');</script>";
+header("refresh:0; url=adminhomepage.php");
+
+}
 }
 $con->close();
 
@@ -177,7 +184,7 @@ $pdf->Output();
   
 }
 
-else  //if maintenance
+else  
 {	
 
 if (isset($_POST["mntnb"]) && !empty($_POST["mntn"]))
@@ -223,6 +230,7 @@ if ($result->num_rows > 0)
 
     }
 }
+
 }
 $con->close();
  
@@ -408,12 +416,164 @@ $pdf->output();
 }
 else
 {
-$message = "Please Enter Device ID/Maintenance ID";
+
+//generate category report
+if (isset($_POST["catreport"]))
+{
+
+$con=mysqli_connect("localhost","root","","devicemanagement");
+if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
+{
+    $message = "Failed to connect server Databse";
+echo "<script type='text/javascript'>alert('$message');</script>";
+header("refresh:0; url=adminhomepage.php");
+  
+}
+else
+{
+
+
+
+
+
+
+class PDF3 extends FPDF 
+{ 
+    // Page header 
+    function Header() 
+    {   
+        //$this->Rect( 10,10,200,282); 
+        $this->Image('http://localhost/DeviceManagement/images/pes_logo.jpg', 20, 8, 20); 
+        $this->Image('http://localhost/DeviceManagement/images/pes_logo.jpg', 160, 8, 20); 
+          
+        
+// Set font format and font-size 
+$this->SetFont('Times', 'B', 20); 
+  
+
+// Framed rectangular area 
+$this->Cell(176, 5, 'Department Of MCA PES University', 0, 0, 'C'); 
+  
+// Set it new line 
+$this->Ln(); 
+  
+// Set font format and font-size 
+$this->SetFont('Times', 'B', 12); 
+  
+// Framed rectangular area 
+$this->Cell(176, 10, 'BSK 3rd stage,Bangalore-560085', 0, 0, 'C'); 
+  
+
+
+    } 
+       
+    // Page footer 
+    function Footer() 
+    { 
+        // Position at 1.5 cm from bottom 
+        $this->SetY(-15);       
+        // Set font-family and font-size of footer. 
+        $this->SetFont('Arial', 'I', 8); 
+
+        // set page number 
+        $this->Cell(0, 10, 'Page ' . $this->PageNo() . 
+              '/{nb}', 0, 0, 'C'); 
+    } 
+} 
+   
+// Create new object. 
+$pdf = new PDF3(); 
+$pdf->AliasNbPages(); 
+// Add new pages. By default no pages available. 
+$pdf->AddPage();  
+// Set font format and font-size 
+$pdf->SetFont('Times', 'BIU', 20);
+
+
+
+
+ $var_cat=$_POST["catdrop"];
+
+    //select records
+$sql = "SELECT *  FROM alldevices where devCategory='$var_cat'";
+$result = $con->query($sql);
+
+if ($result->num_rows > 0)
+{
+    // output data of each row
+
+$pdf->setXY(85,35);
+$pdf->Cell(20,18,"All $var_cat DEVICES",0,0,'C');
+
+$pdf->Ln();
+
+$pdf->Line(10,47,200,47);
+$pdf->SetFont('Times', 'BIU', 12);
+$x=20;
+$y=40;
+
+$pdf->setXY($x,$y);
+$pdf->Cell(20, 26,"Device ID",0,0,'L');
+$pdf->setXY($x+55,$y);
+$pdf->Cell(20, 26,"Serial No.",0,0,'L');
+$pdf->setXY($x+90,$y);
+$pdf->Cell(20, 26,"Installed In.",0,0,'L');
+$pdf->setXY($x+130,$y);
+$pdf->Cell(20, 26,"Status",0,0,'L');
+$pdf->Ln();
+$x=20;
+$y=48;
+$incy=10;
+ $pdf->SetFont('Times', 'I', 12);
+
+
+    while($row = $result->fetch_assoc())
+    {
+        $var_did=$row["devid"];
+        $var_slno=$row["serNo"];
+        $var_installedin=$row["installedin"];
+        $var_sts=$row["status"];             
+        $pdf->setXY($x,$y);
+        $pdf->Cell(20, 26,"$var_did",0,0,'L');
+        $pdf->setXY($x+55,$y);
+        $pdf->Cell(24, 26,"$var_slno",0,0,'L');
+        $pdf->setXY($x+90,$y);
+        $pdf->Cell(20, 26,"$var_installedin",0,0,'L');
+        $pdf->setXY($x+130,$y);
+        $pdf->Cell(20, 26,"$var_sts",0,0,'L');
+        $y=$y+$incy;
+        $pdf->Ln();
+
+
+
+    }
+}
+else
+{
+    $message = "No Device Found In This Category";
 echo "<script type='text/javascript'>alert('$message');</script>";
 header("refresh:0; url=adminhomepage.php");
 
 }
+
 }
+$con->close();
+
+$pdf->Output(); 
+  
+}
+else
+{
+
+$message = "Please Enter Device ID/Maintenance ID";
+echo "<script type='text/javascript'>alert('$message');</script>";
+header("refresh:0; url=adminhomepage.php");
+}
+}
+}
+
+
+
 
 ?>
 

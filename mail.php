@@ -34,7 +34,7 @@ $bodyContent .= '<br><p>UserID : '.$uid.'<br>password : '.$pasw.'<br>Email ID : 
 
 $mail->Subject = $sub;
 $mail->Body    = $bodyContent;
-
+ 
 
 if(!$mail->send())
 {
@@ -44,7 +44,7 @@ if(!$mail->send())
 
 } else
 {
-  $message = "Mail Sent To User";
+  $message = "Updated details Sent To User Mail ID";
 echo "<script type='text/javascript'>alert('$message');</script>";
 header("refresh:0; url=adminhomepage.php");
                 

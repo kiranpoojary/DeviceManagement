@@ -41,7 +41,7 @@ if(!$mail->send())
 
 } else
 {
-  $message = "Mail Sent To User";
+  $message = "Mail Sent To Admin";
 echo "<script type='text/javascript'>alert('$message');</script>";
 header("refresh:0; url=homepage.php");
                 

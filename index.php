@@ -315,7 +315,7 @@ else
 
 <?php
 session_start();
-$_SESSION["adminemail"]="kiranpoojary483@gmail.com";
-$_SESSION["adminpassword"]='143lowerUPPER#';
+$_SESSION["adminemail"]="valid.email.com";
+$_SESSION["adminpassword"]='valid_password';
 
 ?>

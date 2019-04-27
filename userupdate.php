@@ -30,7 +30,7 @@ if ($result->num_rows > 0)
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Update</title>
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/js/sweetalert.min.js" rel="stylesheet" type="text/css" />
@@ -99,7 +99,10 @@ $(function() {
         <input type="text" name="uid" value="<?php echo "$var_uid"; ?>"   placeholder="User ID"  Width="500px" class="form-control" required>
         <br>
         Email ID*
-        <input type="email" pattern="[^ @]*@[^ @]*" size="35" name="eid" value="<?php echo "$var_email"; ?>" Class="form-control" Width="500px" placeholder="Email ID" required>
+        <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" size="35" name="eid" value="<?php echo "$var_email"; ?>" Class="form-control" Width="500px" placeholder="Email ID" required>
+        
+        <!--   pattern="[^ @]*@[^ @]*"   -->
+        
         <br />
         Select User Type
         <input id="tags" name="type" value="<?php echo "$var_type"; ?>" class="form-control" placeholder="User/Admin" required>
