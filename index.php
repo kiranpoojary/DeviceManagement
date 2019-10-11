@@ -311,8 +311,6 @@ else
 
 
 
-
-
 <?php
 session_start();
 $_SESSION["adminemail"]="valid.email.com";
