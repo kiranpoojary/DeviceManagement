@@ -4,7 +4,8 @@ include_once('fpdf181/fpdf.php');
 if (isset($_POST["devb"])&& !empty($_POST["dev"]))
 {
 
-$con=mysqli_connect("localhost","root","","devicemanagement");
+//$con=mysqli_connect("localhost","root","","devicemanagement");
+include('devicedb.php');
 if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
 {
 	$message = "Failed to connect server Databse";
@@ -190,7 +191,8 @@ else
 if (isset($_POST["mntnb"]) && !empty($_POST["mntn"]))
 {
   
-$con=mysqli_connect("localhost","root","","devicemanagement");
+//$con=mysqli_connect("localhost","root","","devicemanagement");
+include('devicedb.php');
 if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
 {
 	$message = "Failed to connect server Databse";
@@ -421,7 +423,8 @@ else
 if (isset($_POST["catreport"]))
 {
 
-$con=mysqli_connect("localhost","root","","devicemanagement");
+//$con=mysqli_connect("localhost","root","","devicemanagement");
+include('devicedb.php');
 if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
 {
     $message = "Failed to connect server Databse";

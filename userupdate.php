@@ -1,6 +1,7 @@
 <?php
 session_start();
-$con=mysqli_connect("localhost","root","","DeviceManagement");
+//$con=mysqli_connect("localhost","root","","DeviceManagement");
+include('devicedb.php');
 mysqli_select_db($con,'DeviceManagement');
 error_reporting(0);
 if($_SESSION ["expiry"]==1)
@@ -31,6 +32,7 @@ if ($result->num_rows > 0)
 <html>
 <head>
     <title>Update</title>
+    <!--
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/js/sweetalert.min.js" rel="stylesheet" type="text/css" />
@@ -40,6 +42,12 @@ if ($result->num_rows > 0)
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+
 
 <script type="text/javascript">
     function error_report($tt,$txt,$ty)
@@ -135,15 +143,16 @@ $(function() {
 
 <?php
 
-$con=mysqli_connect("localhost","root","","DeviceManagement");
+//$con=mysqli_connect("localhost","root","","DeviceManagement");
+include('devicedb.php');
 mysqli_select_db($con,'DeviceManagement');
 error_reporting(0);
 session_start();
 if(isset($_POST['up']))       
 {
     
-    
-    $con=mysqli_connect("localhost","root","","DeviceManagement");
+    //$con=mysqli_connect("localhost","root","","DeviceManagement");
+    include('devicedb.php');
     if (!$con)
     {
 
@@ -161,10 +170,6 @@ if(isset($_POST['up']))
             $var_uid=$_POST["uid"];
             $var_email=$_POST["eid"];
             $var_type=$_POST["type"];
-
-            
-            
-           
            
             //update query 
             $sql="UPDATE users SET userid='$var_uid',email='$var_email',privilage='$var_type' WHERE userid='$uid'";
@@ -200,7 +205,8 @@ if(isset($_POST['del']))
 {
     
     
-    $con=mysqli_connect("localhost","root","","DeviceManagement");
+    //$con=mysqli_connect("localhost","root","","DeviceManagement");
+    include('devicedb.php');
     if (!$con)
     {
          echo '<script type="text/javascript">',

@@ -1,5 +1,6 @@
 <?php
-$con=mysqli_connect("localhost","root","","DeviceManagement");
+include('devicedb.php');
+//$con=mysqli_connect("localhost","root","","DeviceManagement");
 mysqli_select_db($con,'DeviceManagement');
 //error_reporting(0);
 session_start();
@@ -14,17 +15,19 @@ if($_SESSION ["expiry"]==1)
 <html>
 <head>
   <title>Admin</title>
+  <!--
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/js/sweetalert.min.js" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
+-->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
-    <style type="text/css">
-      
-
-    </style>
   </head>
 <body style="background: #EEFFEE;padding-bottom:10px">
     <form id="addm" method="post" action="">
@@ -53,7 +56,8 @@ if($_SESSION ["expiry"]==1)
   <?php
 
 // Check connection
-$con=mysqli_connect("localhost","root","","DeviceManagement");
+//$con=mysqli_connect("localhost","root","","DeviceManagement");
+include('devicedb.php');
 if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
 {
 }
@@ -119,7 +123,8 @@ else
      <?php
 
 // Check connection
-$con=mysqli_connect("localhost","root","","DeviceManagement");
+//$con=mysqli_connect("localhost","root","","DeviceManagement");
+include('devicedb.php');
 if (!$con or !mysqli_select_db($con,'DeviceManagement')) 
 {
 }

@@ -2,11 +2,19 @@
 <html>
 <head>
     <title>Add New Category</title>
+ <!--
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="http://localhost/DeviceManagement/bootstrap/js/sweetalert.min.js" rel="stylesheet" type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
+-->
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">
 
 
     <script type="text/javascript">
@@ -49,7 +57,7 @@
     <form action="" method="post">
          <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="home.aspx" style="margin-left: -60px">DeviceManagement</a>
+                <a class="navbar-brand" href="homepage.php" style="margin-left: -60px">DeviceManagement</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -68,7 +76,7 @@
     <br>
     <br>
     <center>
-        <div style="background: #EEFFEE; border: 4px solid black" id="newcatadd" class="form-control col-md-6 col-md-offset-2">
+        <div style="background: #EEFFEE; border: 4px solid black;height: 400px" id="newcatadd" class="form-control col-md-6 col-md-offset-2">
             <br>
             <h2 class="style2"><u>Change Your Password</u></h2> 
             <br>
@@ -86,6 +94,15 @@
         </div>
     </center>
     <br><br>
+             <br>  <br>
+             <br>  <br>
+             <br>  <br>
+             <br>  <br>
+             
+           
+           
+            
+             
     <div class="py-3 bg-dark text-white">
       <div class="container">
         <div class="row">
@@ -123,7 +140,8 @@ if(isset($_POST["sub"]) && !$_POST["new"]=="")
     if ($new == $newc)
     {
        
-    $con=mysqli_connect("localhost","root","","DeviceManagement");
+    //$con=mysqli_connect("localhost","root","","DeviceManagement");
+    include('devicedb.php');
     if (!$con)
     {
         echo '<script type="text/javascript">',
